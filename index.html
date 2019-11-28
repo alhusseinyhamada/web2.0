@@ -1,0 +1,149 @@
+<html>
+    <head>
+    
+    
+    </head>
+    <body>
+        <center>
+        <h1 id="h1">Learn the English Letters</h1>
+        <a>Numbers of Letters :</a>
+        <input type="number" min="1" max="26" id="text">
+        <input type="button" id="Generate" value="Generate">
+            <br><br>
+		<div id="div1"></div>        
+        <img id="image"  >
+		
+        </center>
+    </body>
+    <script>
+        
+        var Generate=document.getElementById('Generate');
+		var div1=document.getElementById('div1');
+		var array=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+		var y=new Array(100);
+        var c=1;
+        Generate.addEventListener("click",function(){
+                 if(localStorage.getItem('generate') !== null){
+            var aj = JSON.parse(localStorage.getItem('generate'));
+            aj.key.push([new Date().toLocaleString() , document.getElementById		('h1').value]);
+            console.log(aj);
+            var jsonStr = JSON.stringify(aj);
+            localStorage.setItem('generate',jsonStr);
+            console.log(jsonStr);
+
+        }else{
+            var t ={
+                'key' : []
+            }
+            t.key.push([new Date().toLocaleString() ,  document.getElementById('h1').value]);
+            var jsonStr = JSON.stringify(t);
+            localStorage.setItem('generate',jsonStr);
+            console.log(jsonStr);
+        
+        }
+            
+          var n= display(); 
+		  
+
+		   div1.textContent=" ";
+		 for(var i=0;i<n;i++){
+            
+		 var list=document.createElement("button");
+		 var num=Math.floor(Math.random() * 26); 
+		 var node=document.createTextNode(array[num]);
+		 list.appendChild(node);
+		 div1.appendChild(list);
+             var btn=document.getElementsByTagName("button");
+            for(var j=0;j<btn.length;j++){
+                list.addEventListener("click",function(e){
+    document.getElementById("image").setAttribute("src","images/"+e.target.textContent+".jpg");
+    document.getElementById("image").setAttribute("width","400");
+    document.getElementById("image").setAttribute("height","450");                
+    document.getElementById("image").setAttribute("style","border: 2px solid;margin-top:30px;"); 
+                     if(localStorage.getItem('char') !== null){
+                var aj = JSON.parse(localStorage.getItem('char'));
+                aj.char.push([new Date().toLocaleString() , e.target.textContent]);
+                console.log(aj);
+                var jsonStr = JSON.stringify(aj);
+                localStorage.setItem('char',jsonStr);
+                console.log(jsonStr);
+
+            }else{
+                var t ={
+                    'char' : []
+                }
+                t.char.push([new Date().toLocaleString() ,  e.target.textContent]);
+                var jsonStr = JSON.stringify(t);
+                localStorage.setItem('char',jsonStr);
+                console.log(jsonStr);
+            
+            }
+                    
+                
+             } )
+        }  
+}} );
+        
+        
+        
+        function display(){
+            var text=document.getElementById('text');
+            return text.value;
+            
+        };
+		   
+    
+        
+        window.onload = function(){
+            
+            
+        if(localStorage.getItem('load') !== null){
+            var aj = JSON.parse(localStorage.getItem('load'));
+            aj.load.push([new Date().toLocaleString() , "Loaded"]);
+            console.log(aj);
+            var jsonStr = JSON.stringify(aj);
+            localStorage.setItem('load',jsonStr);
+            console.log(jsonStr);
+
+        }else{
+            var t ={
+                'load' : []
+            }
+            t.load.push([new Date().toLocaleString() ,  "Loaded"]);
+            var jsonStr = JSON.stringify(t);
+            localStorage.setItem('load',jsonStr);
+            console.log(jsonStr);
+        
+        }
+            
+        }
+        
+        
+        
+        
+         window.onunload = function(){
+            
+            
+        if(localStorage.getItem('unload') !== null){
+            var aj = JSON.parse(localStorage.getItem('unload'));
+            aj.load.push([new Date().toLocaleString() , "unloaded"]);
+            console.log(aj);
+            var jsonStr = JSON.stringify(aj);
+            localStorage.setItem('unload',jsonStr);
+            console.log(jsonStr);
+
+        }else{
+            var t ={
+                'load' : []
+            }
+            t.load.push([new Date().toLocaleString() ,  "unloaded"]);
+            var jsonStr = JSON.stringify(t);
+            localStorage.setItem('unload',jsonStr);
+            console.log(jsonStr);
+        
+        }
+            
+        }
+    </script>
+
+</html>
