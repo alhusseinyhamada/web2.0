@@ -1,0 +1,224 @@
+<html>
+    <head>
+    
+    
+    </head>
+    <body>
+        <center>
+        <h1 id="h1">Learn the English Letters</h1>
+        <a>Numbers of Letters :</a>
+        <input type="number" min="1" max="26" id="text">
+        <input type="button" id="Generate" value="Generate">
+		<button value="Database" id="db">Database</button>
+            <br><br>
+		<div id="div1" ></div>        
+        <img id="image" >
+		
+        </center>
+		
+		<div id="sh"></div>
+    </body>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+         var $arr = [];
+        var Generate=document.getElementById('Generate');
+		var div1=document.getElementById('div1');
+		var array=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+		var y=new Array(100);
+        var c=1;
+        
+ function key(keyname,keytarget,pressdate=new Date()){
+    this.keyname=keyname;
+    this.keytarget=keytarget;
+    this.pressdate=pressdate;
+     
+}
+        
+        
+        Generate.addEventListener("click",function(e){
+               //  LOCALSTORAGE HANDLE OF GENERATE BUTTON
+    if(localStorage.getItem('generate') !== null){
+        var gener = JSON.parse(localStorage.getItem('generate'));
+        var gentemp=new key(e.type,e.target.textContent,new Date().toDateString());
+        genj.key.push(gentemp);
+        console.log(genj);
+        for(var i=0;i<genj.key.length;i++){
+            $arr.push(genj.key[i]);
+        }
+        var genjs = JSON.stringify(gener);
+        localStorage.setItem('generate',genjs);
+        console.log(genjs);
+
+    }
+    else{
+        var gent ={
+            'key' : []
+        }
+        var gentemp=new key(e.type,e.target.textContent,new Date().toDateString());
+        gent.key.push(gentemp);
+        for(var i=0;i<gent.key.length;i++){
+            $arr.push(gent.key[i]);
+        }
+        var genjson = JSON.stringify(gent);
+        localStorage.setItem('generate',genjson);
+        console.log(genjson);
+    }
+            
+          var n= display(); 
+           
+		  
+
+		   div1.textContent=" ";
+		 for(var i=0;i<n;i++){
+            
+		 var list=document.createElement("button");
+		 var num=Math.floor(Math.random() * 26); 
+		 var node=document.createTextNode(array[num]);
+		 list.appendChild(node);
+		 div1.appendChild(list);
+             var btn=document.getElementsByTagName("button");
+            for(var j=0;j<btn.length;j++){
+                list.addEventListener("click",function(ev){
+    document.getElementById("image").setAttribute("src","images/"+ev.target.textContent+".jpg");
+    document.getElementById("image").setAttribute("width","400");
+    document.getElementById("image").setAttribute("height","450");                
+    document.getElementById("image").setAttribute("style","border: 2px solid;margin-top:30px;"); 
+                     if(localStorage.getItem('char') !== null){
+                  var btnj = JSON.parse(localStorage.getItem('char'));
+                var chartemp=new key(ev.type,ev.target.textContent,new Date().toDateString());
+                btnj.char.push(chartemp);
+                console.log(btnj);
+                for(var i=0;i<btnj.char.length;i++){
+                    $arr.push(btnj.char[i]);
+                }
+                var btnjson = JSON.stringify(btnj);
+                localStorage.setItem('char',btnjson);
+                console.log(btnjson);
+
+            }else{
+                var btnt ={
+                    'char' : []
+                }
+                var chartemp=new key(ev.type,ev.target.textContent,new Date().toDateString());
+                btnt.char.push(chartemp);
+                for(var i=0;i<btnt.char.length;i++){
+                    $arr.push(btnt.char[i]);
+                }
+                var btnjson = JSON.stringify(btnt);
+                localStorage.setItem('char',btnjson);
+                console.log(btnjson);;
+            
+            }
+                    
+                
+             } )
+        }  
+}} );
+        
+        
+        
+        function display(){
+            var text=document.getElementById('text');
+            return text.value;
+            
+        };
+		   
+    
+//*****************************      
+// LOAD HANDLE
+
+window.addEventListener("load",function(e){
+
+    if(localStorage.getItem('loadkey') !== null){
+        var loadj = JSON.parse(localStorage.getItem('loadkey'));
+        var loadtemp=new key(e.type,e.target.textContent,new Date().toDateString());
+        loadj.key.push(loadtemp );
+        console.log(loadj);
+        for(var i=0;i<loadj.key.length;i++){
+            $arr.push(loadj.key[i]);
+        }
+        var loadjson = JSON.stringify(loadj);
+        localStorage.setItem('loadkey',loadjson);
+        console.log(loadjson);
+      
+    }
+    else{
+        var loadt ={
+            'key' : []
+        }
+        var loadtemp=new key(e.type,e.target.textContent,new Date().toDateString());
+        loadt.key.push(loadtemp);
+        for(var i=0;i<loadt.key.length;i++){
+            $arr.push(loadt.key[i]);
+        }
+        var loadjson = JSON.stringify(loadt);
+        localStorage.setItem('loadkey',loadjson);
+        console.log(loadjson);
+        
+    }}
+
+);
+
+//****************************************
+//  UNLOAD HANDLE
+window.addEventListener('unload',function(e){
+
+    if(localStorage.getItem('unloadkey') !== null){
+        var unloadj = JSON.parse(localStorage.getItem('unloadkey'));
+        var unloadtemp=new key(e.type,e.target.textContent,new Date().toDateString());
+        loadj.key.push(unloadtemp );
+        for(var i=0;i<unloadj.key.length;i++){
+            $arr.push(unloadj.key[i]);
+        }
+        var unloadjson = JSON.stringify(unloadj);
+        localStorage.setItem('unloadkey',unloadjson);
+
+
+    }
+    else{
+        var unloadt ={
+            'key' : []
+        }
+        var unloadtemp=new key(e.type,e.target.textContent,new Date().toDateString());
+        unloadj.key.push(unloadtemp );
+        for(var i=0;i<unloadj.key.length;i++){
+            $arr.push(unloadj.key[i]);
+        }
+        var unloadjson = JSON.stringify(unloadt);
+        localStorage.setItem('unloadkey',unloadjson);
+    }
+    }
+
+);
+window.setInterval(function(){
+    console.log("***************************************");
+    console.log($arr);
+    $.ajax({
+        "type": "POST",
+        "url":  "main.php",
+        "data": {"events":$arr},
+        "success": function(response){
+                console.log(response);
+               localStorage.clear();
+			   $arr=[];
+        }
+ })}, 5000);
+ 
+ 
+  $("#db").click(function(){
+     document.getElementById("sh").innerHTML="";
+    $.ajax({
+        "type": "GET",
+        "url":  "main.php",
+        "data": {"events":""},
+        "success": function(response){
+            
+            $("#sh").append(response);
+           
+        }
+    });
+ });
+    </script>
+    
+
+</html>
